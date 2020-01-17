@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: containers/app/Dockerfile
+  #   volumes:
+  #     - "./clientes:/usr/src/clientes"
+  #   ports:
+  #     - "80:80"
+  #     - "3000:3000"
+  #   expose:
+  #     - 80
+  #     - 3000
+  #   depends_on:
+  #     - server
+  # server:
+  #   build:
+  #     context: .
+  #     dockerfile: containers/server/Dockerfile
+  #   volumes:
+  #     - "./clientes_back:/usr/src/clientes_back"
+  #   ports:
+  #     - "3333:3333"
+  #   expose:
+  #     - 3333
+  #   depends_on:
+  #     - db
+  db:
+    build:
+      context: .
+      dockerfile: containers/db/Dockerfile
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
