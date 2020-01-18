@@ -7,9 +7,14 @@ class SessionController {
     const { email, password } = request.only(["email", "password"]);
     const token = await auth.attempt(email, password);
     const user = await User.findBy("email", email);
-    console.log(user);
-    user.token = token;
-    return { user, success: true };
+    return { user, ...token, success: true };
+  }
+
+  async logout({ request, response, auth }) {
+    try {
+      auth.logout();
+      return { success: true };
+    } catch (err) {}
   }
 }
 
